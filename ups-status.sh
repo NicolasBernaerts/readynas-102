@@ -14,4 +14,4 @@
 VALUE=$(/bin/upsc UPS@localhost $1)
 
 # return vaue
-echo -e \"${VALUE}\"
+echo "'"${VALUE}"'"
