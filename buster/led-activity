@@ -1,0 +1,38 @@
+#!/bin/bash
+# ---------------------------------------------------
+#   ReadyNAS 102 led activity service
+#
+# Revision history :
+#   06/01/2021, V1.0 - Creation by N. Bernaerts 
+# ---------------------------------------------------
+
+# disk and led arrays
+ARR_DISK=( "sda" "sdb" "sdc" )
+ARR_LED=( "sata1" "sata2" "backup" )
+
+# infinite loop
+while true
+do
+	# loop thru disks to light led
+	for INDEX in ${!ARR_DISK[*]}
+	do
+		# get disk read an write counters
+		NEW_STATE=$(cat /sys/block/${ARR_DISK[${INDEX}]}/stat | xargs | cut -d' ' -f3,7)
+
+		# if counters are different, new activity, switch on led
+		[ "${NEW_STATE}" != "${ARR_STATE[${INDEX}]}" ] && echo "1" > "/sys/class/leds/rn102:blue:${ARR_LED[${INDEX}]}/brightness"
+		ARR_STATE[${INDEX}]="${NEW_STATE}"
+	done
+
+	# wait for 100ms
+	sleep 0.1
+
+	# loop thru leds to switch them off
+	for LED in ${ARR_LED[@]}
+	do
+		echo "0" > "/sys/class/leds/rn102:blue:${LED}/brightness"
+	done
+
+	# wait for 100ms
+	sleep 0.1
+done
