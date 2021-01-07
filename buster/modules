@@ -1,0 +1,3 @@
+# Load required modules
+gpio-fan
+btrfs
