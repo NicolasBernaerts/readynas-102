@@ -1,0 +1,15 @@
+# Thermal management
+gpio-fan
+# SATA
+ehci_orion
+sata_mv
+# Ethernet
+marvell
+mvmdio
+ipv6
+# Power / USB buttons
+evdev
+gpio_keys
+# USB disks
+sd_mod
+usb_storage
