@@ -1,0 +1,11 @@
+[Unit]
+Description=disks LED activity
+ 
+[Service]
+Type=simple
+ExecStart=/usr/local/sbin/led-activity
+Restart=on-failure
+TimeoutStopSec=1
+ 
+[Install]
+WantedBy=multi-user.target
