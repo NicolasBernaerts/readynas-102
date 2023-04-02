@@ -491,8 +491,8 @@ So, it is important :
   * rotate logs on 1 file only
 
 ~~~
-# mv /etc/cron.daily/logrotate /etc/cron.hourly/logrotate
-# nano /etc/logrotate.conf
+$ mv /etc/cron.daily/logrotate /etc/cron.hourly/logrotate
+$ nano /etc/logrotate.conf
 ~~~
 
     # see "man logrotate" for details
@@ -505,9 +505,9 @@ So, it is important :
     ...
 
 ~~~
-# sed -i '/rotate [0-9]/d' /etc/logrotate.d/*
-# rm /var/log/*.log.* /var/log/*/*.log.*
-# service logrotate restart
+$ sed -i '/rotate [0-9]/d' /etc/logrotate.d/*
+$ rm /var/log/*.log.* /var/log/*/*.log.*
+$ service logrotate restart
 ~~~
 
 ## Force Ethernet to 100Mb
@@ -515,7 +515,7 @@ So, it is important :
 Because of CPU limitation, kernel and syslog logs are filled with overrrun error messages.
 
 ~~~
-# dmesg
+$ dmesg
 [ 1423.760299] mvneta d0074000.ethernet eth0: bad rx status 0f830000 (overrun error), size=448
 [ 1423.973064] mvneta d0074000.ethernet eth0: bad rx status 0f830000 (overrun error), size=336
 [ 1424.230631] mvneta d0074000.ethernet eth0: bad rx status 0f830000 (overrun error), size=1088
@@ -530,5 +530,5 @@ But it is filling **kern.log** and **rsyslog** with a huge amount of useless mes
 aS Ethernet speed is to fast for the poor single core ARM processor, It should be lowered to 100Mb :
 
 ~~~
-# ethtool -s eth0 speed 100
+$ ethtool -s eth0 speed 100
 ~~~
