@@ -20,7 +20,7 @@ In this guide, different operations will be performed either from a linux workst
   * linux workstation shell prompt starts with **#**
   * NAS shell prompt starts with **$**
 
-# Prepare the USB key / ssd disk
+# Prepare the USB key / SSD disk
 
 As the USB key will be the NAS main drive and will hold the complete system, it should be as fast as possible and 16Gb should be a comfortable minimum.
 
