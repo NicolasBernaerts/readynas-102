@@ -69,7 +69,7 @@ As we have done a cross architecture debootstrap, we need to launch the second s
 # dpkg-reconfigure locales
 # dpkg-reconfigure tzdata
   
-# wget --no-check-certificate -O /etc/kernel/postinst.d/zz-local-build-image https://raw.githubusercontent.com/NicolasBernaerts/readynas-102/master/buster/zz-local-build-image
+# wget --no-check-certificate -O /etc/kernel/postinst.d/zz-local-build-image https://raw.githubusercontent.com/NicolasBernaerts/readynas-102/master/bullseye/zz-local-build-image
 # chmod a+x /etc/kernel/postinst.d/zz-local-build-image
   
 # apt install linux-image-armmp
@@ -80,9 +80,9 @@ As we have done a cross architecture debootstrap, we need to launch the second s
     readynas102-debian
 
 ~~~
-# wget --no-check-certificate -O /etc/fw_env.config https://raw.githubusercontent.com/NicolasBernaerts/readynas-102/master/buster/fw_env.config
+# wget --no-check-certificate -O /etc/fw_env.config https://raw.githubusercontent.com/NicolasBernaerts/readynas-102/master/bullseye/fw_env.config
   
-# wget --no-check-certificate -O /etc/fstab https://raw.githubusercontent.com/NicolasBernaerts/readynas-102/master/buster/fstab
+# wget --no-check-certificate -O /etc/fstab https://raw.githubusercontent.com/NicolasBernaerts/readynas-102/master/bullseye/fstab
 
 # nano /etc/systemd/system.conf
 ~~~
@@ -92,7 +92,7 @@ As we have done a cross architecture debootstrap, we need to launch the second s
     ...
 
 ~~~
-# wget --no-check-certificate -O /etc/network/interfaces https://raw.githubusercontent.com/NicolasBernaerts/readynas-102/master/buster/interfaces
+# wget --no-check-certificate -O /etc/network/interfaces https://raw.githubusercontent.com/NicolasBernaerts/readynas-102/master/bullseye/interfaces
 
 # nano /etc/ssh/sshd_config
 ~~~
@@ -108,27 +108,28 @@ As we have done a cross architecture debootstrap, we need to launch the second s
     btrfs
 
 ~~~
-# wget --no-check-certificate -O /etc/initramfs-tools/modules https://raw.githubusercontent.com/NicolasBernaerts/readynas-102/master/buster/modules
+# wget --no-check-certificate -O /etc/initramfs-tools/modules https://raw.githubusercontent.com/NicolasBernaerts/readynas-102/master/bullseye/modules
 ~~~
-
 
 ReadyNAS 102 is loosing date during startup (realtime clock battery may be dead).
 
 So it is necessary to setup the date after every start. This is declared as a service where date is taken from an old Google redirection page.
 
 ~~~
-# wget --no-check-certificate -O /usr/local/sbin/init-date https://raw.githubusercontent.com/NicolasBernaerts/readynas-102/master/buster/init-date
+# wget --no-check-certificate -O /usr/local/sbin/init-date https://raw.githubusercontent.com/NicolasBernaerts/readynas-102/master/bullseye/init-date
 # chmod +x /usr/local/sbin/init-date
-# wget --no-check-certificate -O /etc/systemd/system/init-date.service https://raw.githubusercontent.com/NicolasBernaerts/readynas-102/master/buster/init-date.service
+# wget --no-check-certificate -O /etc/systemd/system/init-date.service https://raw.githubusercontent.com/NicolasBernaerts/readynas-102/master/bullseye/init-date.service
 # systemctl enable init-date.service
 ~~~
 
-With Debian, activity LED are not managed anymore. The following service updates LED every 200ms according to the disk activity. If any data is written or read from a disk, the activity LED is blinking. Backup LED is used for the USB key or USB SDD.
+With Debian, activity LED are not managed anymore. The following service updates LED every 200ms according to the disk activity.
+
+If any data is written or read from a disk, the activity LED is blinking. Backup LED is used for the USB key or USB SDD.
 
 ~~~
-# wget --no-check-certificate -O /usr/local/sbin/led-activity https://raw.githubusercontent.com/NicolasBernaerts/readynas-102/master/buster/led-activity
+# wget --no-check-certificate -O /usr/local/sbin/led-activity https://raw.githubusercontent.com/NicolasBernaerts/readynas-102/master/bullseye/led-activity
 # chmod +x /usr/local/sbin/led-activity
-# wget --no-check-certificate -O /etc/systemd/system/led-activity.service https://raw.githubusercontent.com/NicolasBernaerts/readynas-102/master/buster/led-activity.service
+# wget --no-check-certificate -O /etc/systemd/system/led-activity.service https://raw.githubusercontent.com/NicolasBernaerts/readynas-102/bullseye/buster/led-activity.service
 # systemctl enable led-activity.service
 
 # apt clean
@@ -161,9 +162,8 @@ It can be easily accessed by removing the grey sticker at the back of the ReadyN
 
 Once the sticker is removed, you’ll gain access to a 4 pins connector. When you have the connector in front of you, pinout is as follow :
 
-| Rx   |  Tx   | \
-| Gnd  |  Vcc  |
-
+    | Rx   |  Tx   |
+    | Gnd  |  Vcc  |
 
 You just need to connect it to your computer thu a 3.3V USB serial dongle.
 
@@ -437,7 +437,7 @@ $ systemctl restart networking.service
 
 ## Install Open Media Vault
 
-You just need to follow the standard [Debian installation procedure] (https://openmediavault.readthedocs.io/en/6.x/installation/on_debian.html)
+You just need to follow the standard [Debian installation procedure](https://openmediavault.readthedocs.io/en/6.x/installation/on_debian.html)
 
 ~~~
 $ apt install --yes gnupg ca-certificates
@@ -477,7 +477,7 @@ Install **MergerFS** :
 $ apt install openmediavault-mergerfs
 ~~~
 
-You should get [OpenMediaVault connexion page] (http://readynas102-debian.local/) !
+You should get [OpenMediaVault connexion page](http://readynas102-debian.local/) !
 
 To protect your USB Key, you can also install plugin **openmediavault-flashmemory**.
 
