@@ -1,3 +1,5 @@
+# ReadyNAS-102 under Debian Bullseye & Open Media Vault 6
+
 During some holidays, while digging into some cupboard, I found an almost brand new Netgear ReadyNAS 102. It was bought in 2015 and almost untouched.
 
 Specs wise, this NAS is running a single core ARMv7 800MHz with 512Mb RAM. 
