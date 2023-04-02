@@ -6,6 +6,8 @@ Specs wise, this NAS is running a single core ARMv7 800MHz with 512Mb RAM.
 
 As I was actually needing a backup NAS running my favorite team Debian / OpenMediaVault I decided to revive this ReadyNAS NAS by installing a brand new Debian **Eyesbull** with **OpenMediaVault** 6.0.
 
+![OMV Specs](./readynas102-omv-specs.png)
+
 As I wanted to minimise the risk and to have installation reversible, I decided to opt for an OS installation on a external USB SSD disk plugged to the NAS.
 
 Checking on the net, I found a lot of very interesting informations, but no simple guide. So, here is a step by step guide to install Debian 11 + OMV 6.0  on a USB disk that will transfom your old ReadyNAS 102 into a versatile OMV NAS.
@@ -425,52 +427,6 @@ $ nano /etc/resolv.conf
 $ systemctl restart networking.service
 ~~~
 
-## Install Open Media Vault
-
-You just need to follow the standard [Debian installation procedure](https://openmediavault.readthedocs.io/en/6.x/installation/on_debian.html)
-
-~~~
-$ apt install --yes gnupg ca-certificates
-$ wget -O "/etc/apt/trusted.gpg.d/openmediavault-archive-keyring.asc" https://packages.openmediavault.org/public/archive.key
-$ apt-key add "/etc/apt/trusted.gpg.d/openmediavault-archive-keyring.asc"
-$ nano /etc/apt/sources.list.d/openmediavault.list
-~~~
-
-    deb https://packages.openmediavault.org/public shaitan main
-    # deb https://downloads.sourceforge.net/project/openmediavault/packages shaitan main
-    ## Uncomment the following line to add software from the proposed repository.
-    # deb https://packages.openmediavault.org/public shaitan-proposed main
-    # deb https://downloads.sourceforge.net/project/openmediavault/packages shaitan-proposed main
-    ## This software is not part of OpenMediaVault, but is offered by third-party
-    ## developers as a service to OpenMediaVault users.
-    deb https://packages.openmediavault.org/public shaitan partner
-    # deb https://downloads.sourceforge.net/project/openmediavault/packages shaitan partner
-
-~~~
-$ export LANG=C.UTF-8
-$ export DEBIAN_FRONTEND=noninteractive
-$ export APT_LISTCHANGES_FRONTEND=none
-$ apt update
-$ apt-get --yes --auto-remove --show-upgraded --allow-downgrades --allow-change-held-packages --no-install-recommends --option DPkg::Options::="--force-confdef" --option DPkg::Options::="--force-confold" install openmediavault-keyring openmediavault
-$ omv-confdbadm populate
-~~~
-
-Declare **Extra Plugins** repository :
-
-~~~
-$ wget -O - https://github.com/OpenMediaVault-Plugin-Developers/packages/raw/master/install | bash
-~~~
-
-Install **MergerFS** :
-
-~~~
-$ apt install openmediavault-mergerfs
-~~~
-
-You should get [OpenMediaVault connexion page](http://readynas102-debian.local/) !
-
-To protect your USB Key, you can also install plugin **openmediavault-flashmemory**.
-
 ## Log Rotate
 
 If you are using **openmediavault-flashmemory** plugin or any **folder2ram** configuration for logs, it may overflow your RAM and crash your NAS.
@@ -522,3 +478,51 @@ aS Ethernet speed is to fast for the poor single core ARM processor, It should b
 ~~~
 $ ethtool -s eth0 speed 100
 ~~~
+
+## Install Open Media Vault
+
+You just need to follow the standard [Debian installation procedure](https://openmediavault.readthedocs.io/en/6.x/installation/on_debian.html)
+
+~~~
+$ apt install --yes gnupg ca-certificates
+$ wget -O "/etc/apt/trusted.gpg.d/openmediavault-archive-keyring.asc" https://packages.openmediavault.org/public/archive.key
+$ apt-key add "/etc/apt/trusted.gpg.d/openmediavault-archive-keyring.asc"
+$ nano /etc/apt/sources.list.d/openmediavault.list
+~~~
+
+    deb https://packages.openmediavault.org/public shaitan main
+    # deb https://downloads.sourceforge.net/project/openmediavault/packages shaitan main
+    ## Uncomment the following line to add software from the proposed repository.
+    # deb https://packages.openmediavault.org/public shaitan-proposed main
+    # deb https://downloads.sourceforge.net/project/openmediavault/packages shaitan-proposed main
+    ## This software is not part of OpenMediaVault, but is offered by third-party
+    ## developers as a service to OpenMediaVault users.
+    deb https://packages.openmediavault.org/public shaitan partner
+    # deb https://downloads.sourceforge.net/project/openmediavault/packages shaitan partner
+
+~~~
+$ export LANG=C.UTF-8
+$ export DEBIAN_FRONTEND=noninteractive
+$ export APT_LISTCHANGES_FRONTEND=none
+$ apt update
+$ apt-get --yes --auto-remove --show-upgraded --allow-downgrades --allow-change-held-packages --no-install-recommends --option DPkg::Options::="--force-confdef" --option DPkg::Options::="--force-confold" install openmediavault-keyring openmediavault
+$ omv-confdbadm populate
+~~~
+
+Declare **Extra Plugins** repository :
+
+~~~
+$ wget -O - https://github.com/OpenMediaVault-Plugin-Developers/packages/raw/master/install | bash
+~~~
+
+Install **MergerFS** :
+
+~~~
+$ apt install openmediavault-mergerfs
+~~~
+
+You should get [OpenMediaVault connexion page](http://readynas102-debian.local/) !
+
+![OMV Login](./readynas102-omv-login.png)
+
+To protect your USB Key, you can also install plugin **openmediavault-flashmemory**.
