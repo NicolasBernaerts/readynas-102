@@ -74,12 +74,8 @@ As we have done a cross architecture debootstrap, we need to launch the second s
   
 # apt install linux-image-armmp
 
-# nano /etc/hostname
-~~~
+# wget --no-check-certificate -O /etc/hostname https://raw.githubusercontent.com/NicolasBernaerts/readynas-102/master/bullseye/hostname
 
-    readynas102-debian
-
-~~~
 # wget --no-check-certificate -O /etc/fw_env.config https://raw.githubusercontent.com/NicolasBernaerts/readynas-102/master/bullseye/fw_env.config
   
 # wget --no-check-certificate -O /etc/fstab https://raw.githubusercontent.com/NicolasBernaerts/readynas-102/master/bullseye/fstab
