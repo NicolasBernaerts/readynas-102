@@ -97,13 +97,7 @@ As we have done a cross architecture debootstrap, we need to launch the second s
     PermitRootLogin yes
 
 ~~~
-# nano /etc/modules
-~~~
-
-    gpio-fan
-    btrfs
-
-~~~
+# wget --no-check-certificate -O /etc/modules https://raw.githubusercontent.com/NicolasBernaerts/readynas-102/master/bullseye/modules
 # wget --no-check-certificate -O /etc/initramfs-tools/modules https://raw.githubusercontent.com/NicolasBernaerts/readynas-102/master/bullseye/modules
 ~~~
 
