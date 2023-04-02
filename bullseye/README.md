@@ -4,7 +4,9 @@ During some holidays, while digging into some cupboard, I found an almost brand 
 
 Specs wise, this NAS is running a single core ARMv7 800MHz with 512Mb RAM. 
 
-As I was actually needing a backup NAS running my favorite team Debian / OpenMediaVault I decided to revive this ReadyNAS NAS by installing a brand new Debian **Eyesbull** with **OpenMediaVault** 6.0.
+As I was actually needing a backup NAS, I decided to revive this ReadyNAS NAS by installing a brand new :
+  * **Debian** 11 Eyesbull
+  * **Open Media Vault** 6.0
 
 ![OMV Specs](./readynas102-omv-specs.png)
 
